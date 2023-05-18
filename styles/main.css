@@ -25,6 +25,11 @@ select, table, button, img, function, div {
     object-fit: contain;
 }
 
+.gigantic{
+    width:100vw;
+    height: 100vh;
+    object-fit: cover;
+}
 
 h3{
     text-align: center;

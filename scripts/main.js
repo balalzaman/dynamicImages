@@ -1,4 +1,10 @@
 // window.onload = ()=>{
+
+function showImage(path){
+    const dialogImage = document.querySelector(".dialog .gigantic")
+    dialogImage.src = path;
+}
+
 document.addEventListener("DOMContentLoaded", ()=>{
 
     const tbody = document.querySelector("#list tbody")
@@ -29,19 +35,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 let fullPath = "images/" + image.name;
 
                 let cellThumb = row.insertCell(2);
-                cellThumb.innerHTML = `
-                <a href="${ fullPath }">
-                    <img src="${ fullPath }" class="thumb">
-                </a>
-                `;
+                cellThumb.innerHTML = `<img src="${ fullPath }" class="thumb" onclick="showImage('${ fullPath }')">`;
             }
-
-    // year.innerHTML = "<option>Choose a year</option>"
 
     year.addEventListener("change", ()=>{
         tbody.innerHTML = "" //clear table body result rows
         let selectedYear = year.selectedOptions[0].value;
-        // alert(selectedYear);
         images.filter(i => i.year == selectedYear).forEach( addMovieImageRow );
     }); // end year change listener 
 
@@ -51,8 +50,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(image_list.selectedIndex <= 0){ 
             return; //DO NOTHING
         }
-
-        output.innerHTML = ""
 
         let name = image_list.selectedOptions[0].value;
         // alert(name);
@@ -64,6 +61,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
     clear.addEventListener("click", ()=>{
         output.innerHTML = "";
         image_list.selectedIndex = 0; // set select to first item
-    }) // end clear click
+    }); // end clear click
 
 }); // document loaded
