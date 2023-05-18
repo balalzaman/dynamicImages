@@ -1,6 +1,9 @@
 // window.onload = ()=>{
 document.addEventListener("DOMContentLoaded", ()=>{
 
+    const tbody = document.querySelector("#list tbody")
+
+    const year = document.getElementById("year")
     const image_list = document.getElementById("image_list")
     const output = document.getElementById("output")
     const clear = document.getElementById("clear")
@@ -14,12 +17,42 @@ document.addEventListener("DOMContentLoaded", ()=>{
         image_list.appendChild(option)
     }); // end images for each
 
+    function addMovieImageRow(image){
+                let row = tbody.insertRow(-1); // end of rows
+                
+                let cellYear = row.insertCell(0);
+                cellYear.innerHTML = image.year;
+               
+                let cellTitle = row.insertCell(1);
+                cellTitle.innerHTML = image.title;
+
+                let fullPath = "images/" + image.name;
+
+                let cellThumb = row.insertCell(2);
+                cellThumb.innerHTML = `
+                <a href="${ fullPath }">
+                    <img src="${ fullPath }" class="thumb">
+                </a>
+                `;
+            }
+
+    // year.innerHTML = "<option>Choose a year</option>"
+
+    year.addEventListener("change", ()=>{
+        tbody.innerHTML = "" //clear table body result rows
+        let selectedYear = year.selectedOptions[0].value;
+        // alert(selectedYear);
+        images.filter(i => i.year == selectedYear).forEach( addMovieImageRow );
+    }); // end year change listener 
+
     image_list.addEventListener("change", ()=>{
 
         // IS FIRST ITEM "make a selection" e.g. 0, or no items e.g. -1
         if(image_list.selectedIndex <= 0){ 
             return; //DO NOTHING
         }
+
+        output.innerHTML = ""
 
         let name = image_list.selectedOptions[0].value;
         // alert(name);
