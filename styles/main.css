@@ -15,9 +15,9 @@ body {
     background-color: black;
 }
 
-select, table, button, img, function, div {
+/* select, table, button, img, {
     margin: 1rem;
-}
+} */
 
 .thumb{
     width: 3rem;
@@ -26,12 +26,32 @@ select, table, button, img, function, div {
 }
 
 .gigantic{
-    width:100vw;
-    height: 100vh;
-    object-fit: cover;
+    width: 75vw;
+    height: 75vh;
+    object-fit: contain;
 }
 
 h3{
     text-align: center;
     margin-top: 1rem;
+}
+
+.dialog{
+    width: 98vw;
+    height: 98vh;
+    border: 1px solid black;
+    position: fixed;
+    top: 1vh;
+    left: 1vw;
+    background-color: #000000ff;
+    box-shadow: 1vw 1vh 3vh 3vw #00000088;
+}
+
+.dialog.hidden{
+    display: none;
+}
+
+.title{
+    background-color: black;
+    text-align: center;
 }
